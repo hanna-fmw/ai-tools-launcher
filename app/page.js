@@ -3,7 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { useState, useMemo } from 'react'
 import styles from './styles/Home.module.css'
-import './styles/globals.css'
+
 
 export default function Home() {
 	const aiTools = useMemo(() => {
@@ -118,10 +118,7 @@ export default function Home() {
 
 	return (
 		<div className={styles.container}>
-			<Head>
-				<title>AI Tools Launcher</title>
-				<meta name='description' content='Launch your favorite AI tools' />
-			</Head>
+		
 
 			<main className={styles.main}>
 				<h1 className={styles.title}>AI Tools Launcher</h1>
