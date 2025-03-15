@@ -22,6 +22,14 @@ function createWindow() {
 
 	require('@electron/remote/main').enable(mainWindow.webContents)
 
+	// Add this protocol handler
+	if (!isDev) {
+		mainWindow.webContents.session.protocol.registerFileProtocol('app', (request, callback) => {
+			const url = request.url.substr(6)
+			callback({ path: path.normalize(`${__dirname}/${url}`) })
+		})
+	}
+
 	// Load the Next.js app
 	const startUrl = isDev
 		? 'http://localhost:3000/app'

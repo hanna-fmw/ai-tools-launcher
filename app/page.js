@@ -1,23 +1,32 @@
 'use client'
 import Head from 'next/head'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import styles from './styles/Home.module.css'
 import './styles/globals.css'
 
 export default function Home() {
-	const aiTools = [
-		{ name: 'ChatGPT', url: 'https://chat.openai.com', icon: './public/icons/chatgpt.jpg' },
-		{ name: 'Claude', url: 'https://claude.ai', icon: './public/icons/claude.png' },
-		{
-			name: 'Midjourney',
-			url: 'https://www.midjourney.com',
-			icon: './public/icons/midjourney.png',
-		},
-		{ name: 'Perplexity', url: 'https://www.perplexity.ai', icon: './public/icons/perplexity.png' },
-		{ name: 'DALL-E', url: 'https://labs.openai.com', icon: './public/icons/dalle.png' },
-		{ name: 'Gemini', url: 'https://gemini.google.com', icon: './public/icons/gemini.png' },
-	]
+	const aiTools = useMemo(() => {
+		const isDev = process.env.NODE_ENV === 'development'
+		const basePath = isDev ? '' : 'app://./out'
+
+		return [
+			{ name: 'ChatGPT', url: 'https://chat.openai.com', icon: `${basePath}/icons/chatgpt.jpg` },
+			{ name: 'Claude', url: 'https://claude.ai', icon: `${basePath}/icons/claude.png` },
+			{
+				name: 'Midjourney',
+				url: 'https://www.midjourney.com',
+				icon: `${basePath}/icons/midjourney.png`,
+			},
+			{
+				name: 'Perplexity',
+				url: 'https://www.perplexity.ai',
+				icon: `${basePath}/icons/perplexity.png`,
+			},
+			{ name: 'DALL-E', url: 'https://labs.openai.com', icon: `${basePath}/icons/dalle.png` },
+			{ name: 'Gemini', url: 'https://gemini.google.com', icon: `${basePath}/icons/gemini.png` },
+		]
+	}, [])
 
 	const openTool = (url) => {
 		if (window.require) {
@@ -39,7 +48,13 @@ export default function Home() {
 				<div className={styles.grid}>
 					{aiTools.map((tool) => (
 						<div key={tool.name} className={styles.card} onClick={() => openTool(tool.url)}>
-							<img src={tool.icon} alt={tool.name} className={styles.icon} width={50} height={50} />
+							<Image
+								src={tool.icon}
+								alt={tool.name}
+								className={styles.icon}
+								width={50}
+								height={50}
+							/>
 							<h2>{tool.name}</h2>
 						</div>
 					))}
