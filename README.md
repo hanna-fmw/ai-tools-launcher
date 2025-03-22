@@ -34,3 +34,34 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# Building the app
+
+rm -rf .next node_modules build dist out
+npm install
+npm run build
+npm run electron-pack
+
+# Installing the new version (macOS)
+
+1. Quit any running instances of the app (right-click app icon in Dock > Quit)
+2. Move the existing app from Applications folder to Trash
+3. Open the `dist` folder in your project directory
+4. Double-click the `.dmg` file
+5. In the opened window, drag the app icon to the Applications folder
+6. Eject the .dmg (drag from Desktop to Trash or right-click > Eject)
+7. Open the app from Applications folder
+
+To do
+Optimera koden och lägga arrayen i separat fil - sedan i supabase
+Snygga till UI:n
+Skapa flikar för att sortera arrayen efter kategori (lägg till category i arrayen)
+Skapa sökruta med fuzzy
+Göra korten flip-bara med kort beskrivning av vad verktyget gör
+Skapa CRUD-formulär - lägga till, ta bort
+Pagination efter x antal ikoner
+Installationspaket för download
+Skapa README - t.ex. om att rensa och köra electron-pack och att sedan dra
+dubbelklicka på dmg i dist-mappen och dra till Applications på mac. Länkar funkar
+endast i electron-bygget ej localhost
+Lägga till på portfolio
