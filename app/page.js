@@ -4,7 +4,6 @@ import Image from 'next/image'
 import { useState, useMemo } from 'react'
 import styles from './styles/Home.module.css'
 
-
 export default function Home() {
 	const aiTools = useMemo(() => {
 		const isDev = process.env.NODE_ENV === 'development'
@@ -106,6 +105,11 @@ export default function Home() {
 				url: 'https://cloud.google.com/vertex-ai',
 				icon: `${basePath}/icons/vertexai.png`,
 			},
+			{
+				name: 'WCAG Audit Steps',
+				url: 'https://wcag-audit-steps.vercel.app',
+				icon: `${basePath}/icons/icon.png`,
+			},
 		]
 	}, [])
 
@@ -118,8 +122,6 @@ export default function Home() {
 
 	return (
 		<div className={styles.container}>
-		
-
 			<main className={styles.main}>
 				<h1 className={styles.title}>AI Tools Launcher</h1>
 
